@@ -1,0 +1,233 @@
+/* Minimal Metronic theme styles for the Todo application */
+
+/* General styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f8fa;
+  color: #181c32;
+}
+
+/* Card styles */
+.card {
+  box-shadow: 0px 0px 20px 0px rgba(76, 87, 125, 0.02);
+  border-radius: 0.475rem;
+  border: 0;
+  margin-bottom: 1.5rem;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 65px;
+  padding: 0 2.25rem;
+  background-color: transparent;
+  border-bottom: 1px solid #eff2f5;
+}
+
+.card-title {
+  margin: 0;
+  font-weight: 600;
+  color: #181c32;
+  font-size: 1.275rem;
+}
+
+.card-body {
+  padding: 2rem 2.25rem;
+}
+
+/* Form styles */
+.form-label {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #3f4254;
+}
+
+.form-control-solid {
+  background-color: #f5f8fa;
+  border-color: #f5f8fa;
+  color: #5e6278;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.form-control-solid:focus {
+  background-color: #eef3f7;
+  border-color: #eef3f7;
+  color: #5e6278;
+}
+
+/* Button styles */
+.btn {
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  border-radius: 0.475rem;
+}
+
+.btn-primary {
+  background-color: #009ef7;
+  border-color: #009ef7;
+}
+
+.btn-primary:hover {
+  background-color: #0095e8;
+  border-color: #0095e8;
+}
+
+.btn-light {
+  background-color: #f5f8fa;
+  border-color: #f5f8fa;
+  color: #7e8299;
+}
+
+.btn-light:hover {
+  background-color: #e4e6ef;
+  border-color: #e4e6ef;
+  color: #7e8299;
+}
+
+/* Login and signup page styles */
+.d-flex.flex-column.flex-root {
+  min-height: 100vh;
+}
+
+.d-flex.flex-column.flex-lg-row.flex-column-fluid {
+  min-height: 100vh;
+}
+
+.fw-bolder {
+  font-weight: 700 !important;
+}
+
+.fs-2qx {
+  font-size: 3rem !important;
+}
+
+.fs-2 {
+  font-size: 1.75rem !important;
+}
+
+.text-gray-400 {
+  color: #b5b5c3 !important;
+}
+
+.link-primary {
+  color: #009ef7 !important;
+}
+
+.link-primary:hover {
+  color: #0095e8 !important;
+}
+
+/* Todo list styles */
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #181c32;
+  vertical-align: middle;
+  border-color: #eff2f5;
+}
+
+.table th {
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  color: #b5b5c3;
+}
+
+.table td {
+  padding: 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #eff2f5;
+}
+
+.form-check-input {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 0;
+  vertical-align: middle;
+  background-color: #f5f8fa;
+  border: 0;
+}
+
+.form-check-input:checked {
+  background-color: #009ef7;
+  border-color: #009ef7;
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  padding: 0;
+}
+
+.btn-active-color-primary:hover {
+  color: #009ef7;
+}
+
+.btn-active-color-danger:hover {
+  color: #f1416c;
+}
+
+/* Sidebar styles */
+.aside {
+  width: 265px;
+  background-color: #1e1e2d;
+}
+
+.aside-menu {
+  padding: 0 1.5rem;
+}
+
+.menu-item {
+  padding: 0.5rem 0;
+}
+
+.menu-link {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  color: #9899ac;
+  border-radius: 0.475rem;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.menu-link:hover, .menu-link.active {
+  background-color: #1b1b28;
+  color: #ffffff;
+}
+
+.menu-title {
+  font-weight: 600;
+  font-size: 1.075rem;
+  margin-left: 0.75rem;
+}
+
+/* Header styles */
+.header {
+  height: 65px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eff2f5;
+}
+
+/* Footer styles */
+.footer {
+  background-color: #ffffff;
+  border-top: 1px solid #eff2f5;
+}
+
+/* Responsive styles */
+@media (max-width: 991.98px) {
+  .aside {
+    width: 75px;
+  }
+
+  .menu-title {
+    display: none;
+  }
+}

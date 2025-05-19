@@ -13,7 +13,7 @@ tags:
   - name: Todo
     description: Todo 관리 API
 paths:
-  /api/todos:
+  /api/v1/todos:
     get:
       tags:
         - Todo
@@ -49,7 +49,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TodoResponse'
-  /api/todos/{id}:
+  /api/v1/todos/{id}:
     get:
       tags:
         - Todo

@@ -17,16 +17,18 @@ interface UserAuthenticationUseCase {
         val email: String,
         val nickname: String,
         val token: String? = null,
-        val accountLocked: Boolean = false
+        val accountLocked: Boolean = false,
+        val roles: List<String> = emptyList()
     ) {
         companion object {
-            fun fromDomain(user: com.example.todo.domain.model.User, token: String? = null): UserDto {
+            fun fromDomain(user: com.example.todo.domain.model.User, token: String? = null, roles: List<String> = emptyList()): UserDto {
                 return UserDto(
                     id = user.id?.value,
                     email = user.email,
                     nickname = user.nickname,
                     token = token,
-                    accountLocked = user.accountLocked
+                    accountLocked = user.accountLocked,
+                    roles = roles
                 )
             }
         }

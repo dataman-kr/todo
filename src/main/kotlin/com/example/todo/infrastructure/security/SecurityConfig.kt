@@ -35,12 +35,33 @@ class SecurityConfig(private val jwtTokenProvider: JwtTokenProvider) {
             .csrf { it.disable() }
             .headers { headers ->
                 headers.frameOptions { it.sameOrigin() }  // Allow frames for H2 console
+                headers.referrerPolicy { it.policy(org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter.ReferrerPolicy.STRICT_ORIGIN_WHEN_CROSS_ORIGIN) }  // Set Referrer-Policy
             }
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) }
             .authorizeHttpRequests { authorize ->
                 authorize
-                    .requestMatchers("/api/auth/**", "/signup", "/login", "/", "/css/**", "/js/**", "/h2-console/**").permitAll()
-                    .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                    .requestMatchers("/api/v1/auth/**", "/h2-console/**").permitAll()
+                    .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
+                    // Allow access to Swagger UI
+                    .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**", "/openapi.yml", "/api/v1/swagger-ui.html", "/api/v1/swagger-ui/**").permitAll()
+                    // Allow access to static resources for Angular
+                    .requestMatchers(
+                        "/",
+                        "/index.html",
+                        "/favicon.ico",
+                        "/assets/**",
+                        "/*.js",
+                        "/*.js.map",
+                        "/*.css",
+                        "/*.css.map",
+                        "/*.ttf",
+                        "/*.woff",
+                        "/*.woff2"
+                    ).permitAll()
+                    // Secure API endpoints
+                    .requestMatchers("/api/v1/**").authenticated()
+                    // Allow Angular routes to be accessed without authentication
+                    .requestMatchers("/login", "/signup", "/admin/**", "/todos/**").permitAll()
                     .anyRequest().authenticated()
             }
             // We're not using Spring Security's form login processing

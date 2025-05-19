@@ -35,12 +35,18 @@ class TodoWebAdapter(
     }
 
     override fun createTodo(todoRequest: TodoRequest): ResponseEntity<TodoResponse> {
+        // Get the authenticated user ID from the security context
+        val authentication = org.springframework.security.core.context.SecurityContextHolder.getContext().authentication
+        val userId = (authentication.principal as? org.springframework.security.core.userdetails.User)?.username?.toLongOrNull()
+            ?: return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build()
+
         val command = ManageTodoCommand.CreateTodoCommand(
             title = todoRequest.title,
             description = todoRequest.description,
-            isDone = todoRequest.isDone ?: false
+            isDone = todoRequest.isDone ?: false,
+            userId = userId
         )
-        
+
         val createdTodo = manageTodoCommand.createTodo(command)
         return ResponseEntity.status(HttpStatus.CREATED).body(mapToApiResponse(createdTodo))
     }
@@ -52,7 +58,7 @@ class TodoWebAdapter(
                 description = todoRequest.description,
                 isDone = todoRequest.isDone ?: false
             )
-            
+
             val updatedTodo = manageTodoCommand.updateTodo(id, command)
             ResponseEntity.ok(mapToApiResponse(updatedTodo))
         } catch (e: NoSuchElementException) {

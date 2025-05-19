@@ -63,6 +63,6 @@ class UserService(
         val roles = if (user.id?.value == 1L) listOf("USER", "ADMIN") else listOf("USER")
         val token = jwtTokenProvider.createToken(user.email, roles)
 
-        return UserAuthenticationUseCase.UserDto.fromDomain(user, token)
+        return UserAuthenticationUseCase.UserDto.fromDomain(user, token, roles)
     }
 }

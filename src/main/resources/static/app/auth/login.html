@@ -1,0 +1,41 @@
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <div class="auth-sidebar">
+                    <h2 class="mb-4">Todo App</h2>
+                    <p class="mb-0">Manage Your Tasks Efficiently and Effectively</p>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="auth-form">
+                    <form ng-submit="login()">
+                        <h2 class="text-center mb-4">Sign In</h2>
+
+                        <div class="text-center mb-4">
+                            <p class="text-muted">New Here? <a href="/signup">Create an Account</a></p>
+                        </div>
+
+                        <div class="alert alert-danger" ng-if="errorMessage">
+                            {{errorMessage}}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" ng-model="user.email" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" ng-model="user.password" required>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Sign In</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

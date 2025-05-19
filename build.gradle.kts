@@ -21,7 +21,6 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("com.h2database:h2")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -85,4 +84,18 @@ sourceSets {
 // Make sure the OpenAPI code is generated before compiling
 tasks.compileKotlin {
     dependsOn(tasks.openApiGenerate)
+}
+
+// Task to copy openapi.yml to static directory when it changes
+tasks.register<Copy>("copyOpenApiToStatic") {
+    from("${rootDir}/src/main/resources/openapi.yml")
+    into("${rootDir}/src/main/resources/static")
+    // Only copy if the source file has changed
+    inputs.file("${rootDir}/src/main/resources/openapi.yml")
+    outputs.file("${rootDir}/src/main/resources/static/openapi.yml")
+}
+
+// Make sure the openapi.yml is copied to static directory after resources are processed
+tasks.processResources {
+    dependsOn("copyOpenApiToStatic")
 }
