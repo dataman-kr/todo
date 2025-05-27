@@ -50,6 +50,7 @@ class SecurityConfig(private val jwtTokenProvider: JwtTokenProvider) {
                         "/index.html",
                         "/favicon.ico",
                         "/assets/**",
+                        "/app/**",
                         "/*.js",
                         "/*.js.map",
                         "/*.css",
@@ -64,14 +65,14 @@ class SecurityConfig(private val jwtTokenProvider: JwtTokenProvider) {
                     .requestMatchers("/login", "/signup", "/admin/**", "/todos/**").permitAll()
                     .anyRequest().authenticated()
             }
-            // We're not using Spring Security's form login processing
-            // because we have a custom login controller
-            // We only need the redirect to login page functionality
-            .exceptionHandling {
-                it.authenticationEntryPoint { request, response, _ ->
-                    response.sendRedirect("/login")
-                }
-            }
+//            // We're not using Spring Security's form login processing
+//            // because we have a custom login controller
+//            // We only need the redirect to login page functionality
+//            .exceptionHandling {
+//                it.authenticationEntryPoint { request, response, _ ->
+//                    response.sendRedirect("/login")
+//                }
+//            }
             .addFilterBefore(
                 JwtAuthenticationFilter(jwtTokenProvider),
                 UsernamePasswordAuthenticationFilter::class.java

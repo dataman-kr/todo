@@ -34,16 +34,15 @@ class JwtAuthenticationFilter(private val jwtTokenProvider: JwtTokenProvider) : 
             return bearerToken.substring(7)
         }
 
-        // If not found in header, try to get from cookies
-        val cookies = request.cookies
-        if (cookies != null) {
-            for (cookie in cookies) {
-                if (cookie.name == "jwt_token") {
-                    return cookie.value
-                }
-            }
-        }
-
+//        // If not found in header, try to get from cookies
+//        val cookies = request.cookies
+//        if (cookies != null) {
+//            for (cookie in cookies) {
+//                if (cookie.name == "jwt_token") {
+//                    return cookie.value
+//                }
+//            }
+//        }
         return null
     }
 }
